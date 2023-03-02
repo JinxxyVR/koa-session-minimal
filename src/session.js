@@ -48,7 +48,7 @@ module.exports = (options) => {
 
     let sid = oldSid
 
-    const regenerateId = opt.regenerateId && typeof opt.regenerateId !== 'function' ? opt.regenerateId : () => {
+    const regenerateId = opt.regenerateId && typeof opt.regenerateId === 'function' ? opt.regenerateId : () => {
       sid = uid.sync(24)
     }
 
