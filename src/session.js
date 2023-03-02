@@ -48,12 +48,12 @@ module.exports = (options) => {
 
     let sid = oldSid
 
-    const regenerateId = () => {
+    const regenerateId = opt.regenerateId && typeof opt.regenerateId !== 'function' ? opt.regenerateId : () => {
       sid = uid.sync(24)
     }
 
     if (!sid) {
-      regenerateId()
+      regenerateId(ctx)
       ctx.session = {}
     } else {
       ctx.session = await store.get(`${key}:${sid}`)
